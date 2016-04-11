@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from datetime import datetime
 
 
 # Create your models here.
@@ -15,10 +16,16 @@ class Player(models.Model):
 
 
 class RedsData(models.Model):
-    played = models.IntegerField(default=0)
+    lastGamePlayed = models.DateField(primary_key=True)
     won = models.IntegerField(default=0)
     lost = models.IntegerField(default=0)
 
+    def games_played(self):
+        return self.won+self.lost
+
     def games_left(self):
         total_games = 162
-        return total_games - self.played
+        return total_games - self.games_played()
+
+    def __str__(self):
+        return str(self.lastGamePlayed) + " (" + str(self.won) + "-" + str(self.lost) + ")"
