@@ -1,10 +1,17 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.template import RequestContext, loader
 from .models import Player, RedsData
-# Create your views here.
+
+#def index(request):
+#    return render(request, 'stats/index.html')
 
 
 def index(request):
-    return render(request, 'stats/index.html')
+    all_players = Player.objects.all()
+    template = loader.get_template('stats/index.html')
+    context = RequestContext(request, {'all_players': all_players, },)
+    return HttpResponse(template.render(context))
 
 
 def rules(request):
