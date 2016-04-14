@@ -20,11 +20,15 @@ class RedsData(models.Model):
     won = models.IntegerField(default=0)
     lost = models.IntegerField(default=0)
 
+    #def total_games(self):
+    #    return 162
+
     def games_played(self):
         return self.won+self.lost
 
     def games_left(self):
         total_games = 162
+        #return self.total_games() - self.games_played()
         return total_games - self.games_played()
 
     def __str__(self):

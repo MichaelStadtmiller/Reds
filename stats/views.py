@@ -9,8 +9,9 @@ from .models import Player, RedsData
 
 def index(request):
     all_players = Player.objects.all()
+    reds_data = RedsData.objects.all()
     template = loader.get_template('stats/index.html')
-    context = RequestContext(request, {'all_players': all_players, },)
+    context = RequestContext(request, {'all_players': all_players, 'reds_data': reds_data, },)
     return HttpResponse(template.render(context))
 
 

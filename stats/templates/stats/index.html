@@ -1,21 +1,41 @@
 {% extends "base.html" %}
 {% block primary %}
 <section id="header">
-    <h2>Player Standings</h2>
+    <h1>Player Standings</h1>
 </section>
 <section id="players">
     <div class="container home-container">
         {% for Playa in all_players %}
         <div class="col-lg-12 col-md-10 staff-profile">
             <div class="row">
-                <div class="col-md-3 myborder">
-                    <img src="http://loremflickr.com/200/200/face/all">
+                <div class="col-md-3">
+                    <img class="img-rounded" src="http://loremflickr.com/200/200/face/all">
                 </div>
-                <div class="col-md-2 myborder">
-                    <h3>{{ Playa.Name }}</h3><br>
+                <div class="col-md-2">
+                    <h3>{{ Playa.Name }}</h3>
                     <h1>{{ Playa.Guess }}</h1>
                 </div>
+                <div class="col-md-6">
+                    <div class="progress">
+                        <!-- Multiple progress bars within a single div with class progress -->
+                        <div class="progress-bar progress-bar-success" style="width: 45%">
+                            45
+                        </div>
+                        <div class="progress-bar progress-bar-warning" style="width: 10%">
+                            <span class="sr-only">10% Complete (warning)</span>
+                        </div>
+                        <div class="progress-bar progress-bar-danger" style="width: 30%">
+                            <span class="sr-only">30% Complete (danger)</span>
+                        </div>
+                    </div>
+                    <div>
+                        {% for data in RedsData %}
+                            {{ data.won }}
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
+            <hr>
         </div>
         {% endfor %}
     </div>
