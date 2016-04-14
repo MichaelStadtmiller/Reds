@@ -1,4 +1,4 @@
-from __future__ import unicode_literals
+from __future__ import unicode_literals, division
 from django.db import models
 from datetime import datetime
 
@@ -20,16 +20,25 @@ class RedsData(models.Model):
     won = models.IntegerField(default=0)
     lost = models.IntegerField(default=0)
 
-    #def total_games(self):
-    #    return 162
+    def total_games(self):
+        return 162
 
     def games_played(self):
         return self.won+self.lost
 
     def games_left(self):
-        total_games = 162
-        #return self.total_games() - self.games_played()
-        return total_games - self.games_played()
+        #total_games = 162
+        return self.total_games() - self.games_played()
+        #return total_games - self.games_played()
+
+    def perc_won(self):
+        return int(round(self.won/self.total_games()*100))
+
+    def perc_lost(self):
+        return int(round(self.lost/self.total_games()*100))
+
+    def perc_left(self):
+        return int(round(self.games_left()/self.total_games()*100))
 
     def __str__(self):
         return str(self.lastGamePlayed) + " (" + str(self.won) + "-" + str(self.lost) + ")"

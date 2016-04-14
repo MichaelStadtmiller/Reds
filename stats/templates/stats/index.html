@@ -1,6 +1,25 @@
 {% extends "base.html" %}
 {% block primary %}
 <section id="header">
+    <div class="container home-container">
+        <h1>Reds Games</h1>
+        {% for data in reds_data %}
+            <div class="progress">
+                <!-- Multiple progress bars within a single div with class progress -->
+                <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%">
+                    {{ data.won }}
+                </div>
+                <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%">
+                    {{ data.games_left }}
+                </div>
+                <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%">
+                    {{ data.lost }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+<section id="header">
     <h1>Player Standings</h1>
 </section>
 <section id="players">
@@ -16,23 +35,20 @@
                     <h1>{{ Playa.Guess }}</h1>
                 </div>
                 <div class="col-md-6">
-                    <div class="progress">
-                        <!-- Multiple progress bars within a single div with class progress -->
-                        <div class="progress-bar progress-bar-success" style="width: 45%">
-                            45
+                    {% for data in reds_data %}
+                        <div class="progress">
+                            <!-- Multiple progress bars within a single div with class progress -->
+                            <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%">
+                                {{ data.won }}
+                            </div>
+                            <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left }}%">
+                                {{ data.games_left }}
+                            </div>
+                            <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%">
+                                {{ data.lost }}
+                            </div>
                         </div>
-                        <div class="progress-bar progress-bar-warning" style="width: 10%">
-                            <span class="sr-only">10% Complete (warning)</span>
-                        </div>
-                        <div class="progress-bar progress-bar-danger" style="width: 30%">
-                            <span class="sr-only">30% Complete (danger)</span>
-                        </div>
-                    </div>
-                    <div>
-                        {% for data in RedsData %}
-                            {{ data.won }}
-                        {% endfor %}
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <hr>
@@ -41,3 +57,4 @@
     </div>
 </section>
 {%  endblock %}
+
