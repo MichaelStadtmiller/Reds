@@ -7,8 +7,8 @@ class MainView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(MainView, self).get_context_data(**kwargs)
-        context['all_players'] = self.get_all_players()
-        context['reds_data'] = self.get_reds_data()
+        context['all_players'] = self.get_all_players
+        context['reds_data'] = self.get_reds_data
         return context
 
     def get_all_players(self):
