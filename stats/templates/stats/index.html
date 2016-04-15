@@ -3,7 +3,7 @@
 <section id="header" xmlns="http://www.w3.org/1999/html">
     <div class="container home-container">
         <h1>Reds Games</h1>
-        {% for data in reds_data %}
+        {% for data in reds_data.data %}
             <div class="progress progress-bar-height">
                 <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%">
                     {{ data.won }}
@@ -27,19 +27,20 @@
 </section>
 <section id="players">
     <div class="container home-container">
-        {% for Playa in all_players %}
+        {% for Playa in all_players.players %}
         <div class="col-lg-12 col-md-10 staff-profile">
             <div class="row">
                 <div class="col-md-3">
                     <img class="img-rounded" src="http://loremflickr.com/150/150/cincinnatireds/all">
+                    <h2>{{ Playa.Name }}</h2>
                 </div>
+                {% for data in reds_data.data %}
                 <div class="col-md-2">
-                    <h3>{{ Playa.Name }}</h3>
-                    <h1>{{ Playa.Guess }}</h1>
-                    <h3>{{ Playa.Score }}</h3>
+                    <h1 class="jumbotron">{{ Playa.Guess }}</h1>
+                    <h3>{{ Playa.score }}</h3>
                 </div>
                 <div class="col-md-6">
-                    {% for data in reds_data %}
+
                         <div class="progress progress-bar-height">
                             <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%"></div>
                             <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%"></div>
@@ -51,8 +52,8 @@
                                     left: {{ Playa.perc_guess }}%; " title="Guess: {{ Playa.Guess }}">
                             </div>
                         </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
             </div>
             <hr>
         </div>

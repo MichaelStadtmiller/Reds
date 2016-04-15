@@ -1,19 +1,28 @@
-from django.http import HttpResponse
-from django.shortcuts import render
-from django.template import RequestContext, loader
+from django.views.generic import TemplateView
 from .models import Player, RedsData
 
-#def index(request):
-#    return render(request, 'stats/index.html')
+
+class MainView(TemplateView):
+    template_name = 'stats/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(MainView, self).get_context_data(**kwargs)
+        context['all_players'] = self.get_all_players()
+        context['reds_data'] = self.get_reds_data()
+        return context
+
+    def get_all_players(self):
+        context = {}
+        all_players = Player.objects.all()
+        context['players'] = all_players
+        return context
+
+    def get_reds_data(self):
+        context = {}
+        reds_data = RedsData.objects.all()
+        context['data'] = reds_data
+        return context
 
 
-def index(request):
-    all_players = Player.objects.all()
-    reds_data = RedsData.objects.all()
-    template = loader.get_template('stats/index.html')
-    context = RequestContext(request, {'all_players': all_players, 'reds_data': reds_data, },)
-    return HttpResponse(template.render(context))
-
-
-def rules(request):
-    return render(request, 'stats/rules.html')
+class RulesView(TemplateView):
+    template_name = 'stats/rules.html'

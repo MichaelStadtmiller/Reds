@@ -1,7 +1,8 @@
 from django.conf.urls import url
-from . import views
+from django.views.generic.base import RedirectView
+from .views import *
 
 urlpatterns = [
-    url(r'^$', views.index, name='index'),
-    url(r'^rules$', views.rules, name='rules'),
+    url(r'^$', MainView.as_view(), name='index'),
+    url(r'^rules$', RulesView.as_view(), name='rules'),
 ]

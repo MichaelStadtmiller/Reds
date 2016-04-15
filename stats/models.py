@@ -1,6 +1,5 @@
 from __future__ import unicode_literals, division
 from django.db import models
-from datetime import datetime
 
 
 # Create your models here.
@@ -14,9 +13,10 @@ class Player(models.Model):
     def perc_guess(self):
         return self.Guess/self.total_games()*100
 
-    def Score(self):
-        #return self.perc_guess()-RedsData.wins_proj(RedsData)
-        return 1
+    def score(self):
+        rd = RedsData()
+        # return abs(self.Guess-rd.wins_proj)
+        return rd.games_played()
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -56,3 +56,5 @@ class RedsData(models.Model):
 
     def __str__(self):
         return str(self.lastGamePlayed) + " (" + str(self.won) + "-" + str(self.lost) + ")"
+
+
