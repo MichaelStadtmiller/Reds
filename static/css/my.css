@@ -33,6 +33,20 @@ div.myborder {
     border:2px solid purple
 }
 
+.progress-bar-height {
+  height: 50px;
+}
+
+.progress-bar {
+  font-size: 32px;
+  line-height: 50px;
+}
+
 .progress-bar-neutral {
-  background-color: #808080;
+  background-color: lightgray;
+}
+
+.progress-bar-milestone {
+    width: 8px;
+    position: absolute;
 }
