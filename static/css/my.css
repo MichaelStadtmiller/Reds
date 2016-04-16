@@ -50,3 +50,12 @@ div.myborder {
     width: 8px;
     position: absolute;
 }
+
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: red;
+}
+::selection {
+    color: white;
+    background: red;
+}

@@ -13,10 +13,10 @@ class Player(models.Model):
     def perc_guess(self):
         return self.Guess/self.total_games()*100
 
-    def score(self):
-        rd = RedsData()
-        # return abs(self.Guess-rd.wins_proj)
-        return rd.games_played()
+    #def score(self):
+    #    rd = RedsData()
+    #    # return abs(self.Guess-rd.wins_proj)
+    #    return rd.games_played()
 
     def __getitem__(self, item):
         return getattr(self, item)
@@ -29,32 +29,28 @@ class RedsData(models.Model):
     lastGamePlayed = models.DateField(primary_key=True)
     won = models.IntegerField(default=0)
     lost = models.IntegerField(default=0)
-
-    def total_games(self):
-        return 162
+    total_games = 162
 
     def games_played(self):
         return self.won+self.lost
 
     def games_left(self):
-        return self.total_games() - self.games_played()
+        return self.total_games - self.games_played()
 
     def perc_won(self):
-        return self.won/self.total_games()*100
+        return self.won/self.total_games*100
 
     def perc_lost(self):
-        return self.lost/self.total_games()*100
+        return self.lost/self.total_games*100
 
     def perc_left(self):
-        return self.games_left()/self.total_games()*100
+        return self.games_left()/self.total_games*100
 
     def currwinrate(self):
         return int(round(self.won/self.games_played()*100))
 
     def wins_proj(self):
-        return int(self.total_games()*(self.currwinrate()/100))
+        return int(self.total_games*(self.currwinrate()/100))
 
     def __str__(self):
         return str(self.lastGamePlayed) + " (" + str(self.won) + "-" + str(self.lost) + ")"
-
-

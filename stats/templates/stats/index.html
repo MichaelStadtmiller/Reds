@@ -32,12 +32,12 @@
             <div class="row">
                 <div class="col-md-3">
                     <img class="img-rounded" src="http://loremflickr.com/150/150/cincinnatireds/all">
-                    <h2>{{ Playa.Name }}</h2>
+                    <h3>Score : {{ Playa.score }}</h3>
                 </div>
                 {% for data in reds_data.data %}
                 <div class="col-md-2">
-                    <h1 class="jumbotron">{{ Playa.Guess }}</h1>
-                    <h3>score (model): {{ Playa.score }}</h3>
+                    <h2>{{ Playa.Name }}</h2>
+                    <h1>{{ Playa.Guess }}</h1>
                 </div>
                 <div class="col-md-6">
                         <div class="progress progress-bar-height">
