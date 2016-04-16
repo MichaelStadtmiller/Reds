@@ -34,12 +34,12 @@ div.myborder {
 }
 
 .progress-bar-height {
-  height: 50px;
+    height: 50px;
 }
 
 .progress-bar {
-  font-size: 32px;
-  line-height: 50px;
+    font-size: 32px;
+    line-height: 50px;
 }
 
 .progress-bar-neutral {

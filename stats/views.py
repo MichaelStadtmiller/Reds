@@ -17,7 +17,7 @@ class MainView(TemplateView):
         reds_data = RedsData.objects.all()
         data = ([d.wins_proj() for d in reds_data])
         for p in all_players:
-            p.score = abs(int(data[0])-p.Guess)
+            p.score = abs(int(data[0])-p.guess)
         context['players'] = all_players
         return context
 
@@ -26,15 +26,6 @@ class MainView(TemplateView):
         reds_data = RedsData.objects.all()
         context['data'] = reds_data
         return context
-
-    #def get_score(self):
-    #    context = {}
-    #    all_players = Player.objects.all()
-    #    reds_data = RedsData.objects.all()
-    #   data = (d.wins_proj for d in reds_data)
-    #    for p in all_players:
-    #        p.score = data[0]
-
 
 
 class RulesView(TemplateView):

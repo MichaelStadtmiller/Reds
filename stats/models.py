@@ -4,25 +4,20 @@ from django.db import models
 
 # Create your models here.
 class Player(models.Model):
-    Name = models.CharField(max_length=20, primary_key=True)
-    Guess = models.IntegerField(default=0)
+    name = models.CharField(max_length=20, primary_key=True)
+    guess = models.IntegerField(default=0)
 
     def total_games(self):
         return 162
 
     def perc_guess(self):
-        return self.Guess/self.total_games()*100
-
-    #def score(self):
-    #    rd = RedsData()
-    #    # return abs(self.Guess-rd.wins_proj)
-    #    return rd.games_played()
+        return self.guess/self.total_games()*100
 
     def __getitem__(self, item):
         return getattr(self, item)
 
     def __str__(self):
-        return self.Name + " " + str(self.Guess)
+        return self.name + " " + str(self.guess)
 
 
 class RedsData(models.Model):
