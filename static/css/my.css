@@ -1,3 +1,11 @@
+body {
+    background-color: whitesmoke;
+}
+
+footer {
+    background-color: white;
+}
+
 header.intro-header {
     background-image: url('/static/img/GABP.jpg');
     background-size: cover;
@@ -19,9 +27,7 @@ hr.large {
 }
 
 div.home-container{
-    background-color:rgb(255,255,255);
-    padding-top:10px;
-    border:2px solid red;
+
 }
 
 section#header {
@@ -29,8 +35,10 @@ section#header {
     padding: 2px;
 }
 
-div.myborder {
-    border:2px solid purple
+.myborder {
+    background-color:rgb(255,255,255);
+    padding-top:10px;
+    border:2px solid red;
 }
 
 .progress-bar-height {
@@ -39,6 +47,11 @@ div.myborder {
 
 .progress-bar {
     font-size: 32px;
+    line-height: 50px;
+}
+
+.progress-bar-small {
+    font-size: 16px;
     line-height: 50px;
 }
 
@@ -58,4 +71,14 @@ div.myborder {
 ::selection {
     color: white;
     background: red;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+h1{
+    font-size: 50px;
 }

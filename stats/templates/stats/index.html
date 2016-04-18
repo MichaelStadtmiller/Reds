@@ -1,64 +1,75 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% block primary %}
-<section id="header" xmlns="http://www.w3.org/1999/html">
-    <div class="container home-container">
-        <h1>Reds Games</h1>
-        {% for data in reds_data.data %}
-         <div class="col-lg-12">
-            <div class="progress progress-bar-height">
-                <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%">
-                    {{ data.won }}
+<div class="container home-container myborder">
+    <section id="header" xmlns="http://www.w3.org/1999/html">
+        <div class="container home-container">
+            <h1>Reds Games</h1>
+            {% for data in reds_data.data %}
+             <div class="col-lg-11">
+                <div class="progress progress-bar-height">
+                    <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%">
+                        {{ data.won }}
+                    </div>
+                    <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%">
+                        {{ data.games_left }}
+                    </div>
+                    <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%">
+                        {{ data.lost }}
+                    </div>
+                    <div class="progress-bar-height progress-bar-milestone" style="background: green;
+                            left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
+                    </div>
                 </div>
-                <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%">
-                    {{ data.games_left }}
-                </div>
-                <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%">
-                    {{ data.lost }}
-                </div>
-                <div class="progress-bar-height progress-bar-milestone" style="background: green;
-                        left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
+                Current win rate {{ data.currwinrate }}% <br>
+                <small>green bar - projected season wins using the current win rate.</small><br>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+    <hr>
+    <section id="header">
+        <h1>Player Standings</h1>
+    </section>
+    <section id="players">
+        <div class="container home-container">
+            {% for playa in all_players.players|dictsort:"score" %}
+            <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12 staff-profile vcenter">
+                <hr>
+                <div class="row">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-7 vcenter text-center">
+                        <img class="img-rounded" src="{% static 'img/Profiles/Gilbert.jpg'%}">
+                        <h3>Score : {{ playa.score }}</h3>
+                    </div>
+                    {% for data in reds_data.data %}
+                    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 vcenter text-center myborder">
+                        <br>
+                        <h4>{{ playa.name }}</h4>
+                        <hr>
+                        <h1>{{ playa.guess }}</h1>
+                        <br>
+                    </div>
+                    <div class="col-lg-7 col-md-6 col-sm-6 col-xs-12 vcenter">
+                            <div class="progress progress-bar-height">
+                                <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%"
+                                        title="{{ data.won }} Wins"></div>
+                                <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%"
+                                        title="{{ data.games_left }} Left"></div>
+                                <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%"
+                                        title="{{ data.lost }} Lost"></div>
+                                <div class="progress-bar-height progress-bar-milestone" style="background: green;
+                                        left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
+                                </div>
+                                <div class="progress-bar-height progress-bar-milestone" style="background: orange;
+                                        left: {{ playa.perc_guess }}%; " title="Guess: {{ playa.guess }}">
+                                </div>
+                            </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
-            Current win rate {{ data.currwinrate }}%
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-</section>
-<section id="header">
-    <h1>Player Standings</h1>
-</section>
-<section id="players">
-    <div class="container home-container">
-        {% for playa in all_players.players|dictsort:"score" %}
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 staff-profile">
-            <div class="row">
-                <div class="col-lg-2 col-md-3 col-sm-4 col-xs-8 myborder">
-                    <img class="img-rounded" src="http://loremflickr.com/150/150/cincinnatireds/all">
-                    <h3>Score : {{ playa.score }}</h3>
-                </div>
-                {% for data in reds_data.data %}
-                <div class="col-md-4 col-xs-4 myborder">
-                    <h2>{{ playa.name }}</h2>
-                    <h1>{{ playa.guess }}</h1>
-                </div>
-                <div class="col-md-8 col-sm-8 col-xs-12 myborder">
-                        <div class="progress progress-bar-height">
-                            <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%"></div>
-                            <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%"></div>
-                            <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%"></div>
-                            <div class="progress-bar-height progress-bar-milestone" style="background: green;
-                                    left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
-                            </div>
-                            <div class="progress-bar-height progress-bar-milestone" style="background: orange;
-                                    left: {{ playa.perc_guess }}%; " title="Guess: {{ playa.guess }}">
-                            </div>
-                        </div>
-                </div>
-                {% endfor %}
-            </div>
-            <hr>
-        </div>
-        {% endfor %}
-    </div>
-</section>
+    </section>
+</div>
 {%  endblock %}
