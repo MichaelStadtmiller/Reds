@@ -2,6 +2,10 @@ body {
     background-color: whitesmoke;
 }
 
+h1{
+    font-size: 50px;
+}
+
 footer {
     background-color: white;
 }
@@ -73,12 +77,13 @@ section#header {
     background: red;
 }
 
+a:hover {
+    color: red;
+}
+
 .vcenter {
     display: inline-block;
     vertical-align: middle;
     float: none;
 }
 
-h1{
-    font-size: 50px;
-}

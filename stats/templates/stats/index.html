@@ -38,7 +38,9 @@
                 <hr>
                 <div class="row">
                     <div class="col-lg-2 col-md-3 col-sm-3 col-xs-7 vcenter text-center">
-                        <img class="img-rounded" src="{% static 'img/Profiles/Gilbert.jpg'%}">
+                        {% with 'img/Profiles/'|add:playa.name|add:'.jpg' as profimage %}
+                            <img class="img-rounded" src="{% static profimage %}">
+                        {% endwith %}
                         <h3>Score : {{ playa.score }}</h3>
                     </div>
                     {% for data in reds_data.data %}
