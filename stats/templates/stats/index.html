@@ -6,19 +6,19 @@
         <div class="container home-container">
             <h1>Reds Games</h1>
             {% for data in reds_data.data %}
-             <div class="col-lg-11">
+            <div class="col-lg-11">
                 <div class="progress progress-bar-height">
                     <div class="progress-bar progress-bar-success" style="width: {{ data.perc_won }}%">
-                        {{ data.won }}
+                    {{ data.won }}
                     </div>
                     <div class="progress-bar progress-bar-neutral" style="width: {{ data.perc_left}}%">
-                        {{ data.games_left }}
+                    {{ data.games_left }}
                     </div>
                     <div class="progress-bar progress-bar-danger" style="width: {{ data.perc_lost }}%">
-                        {{ data.lost }}
+                    {{ data.lost }}
                     </div>
                     <div class="progress-bar-height progress-bar-milestone" style="background: green;
-                            left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
+                        left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
                     </div>
                 </div>
                 Current win rate {{ data.currwinrate }}% <br>

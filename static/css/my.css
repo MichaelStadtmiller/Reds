@@ -10,16 +10,16 @@ footer {
     background-color: white;
 }
 
+hr {
+    border-color: black;
+}
+
 header.intro-header {
     background-image: url('/static/img/GABP.jpg');
     background-size: cover;
     text-align: center;
     margin-bottom: 0px;
     box-shadow: inset 0px 0px 0 2000px rgba(0,0,0,0.2);
-}
-
-hr {
-    border-color: black;
 }
 
 hr.small {
@@ -32,6 +32,10 @@ hr.large {
 
 div.home-container{
 
+}
+
+a:hover {
+    color: red;
 }
 
 section#header {
@@ -68,6 +72,12 @@ section#header {
     position: absolute;
 }
 
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 ::-moz-selection { /* Code for Firefox */
     color: white;
     background: red;
@@ -76,14 +86,3 @@ section#header {
     color: white;
     background: red;
 }
-
-a:hover {
-    color: red;
-}
-
-.vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
-}
-
