@@ -21,8 +21,7 @@
                         left: {{ data.currwinrate }}%; " title="{{ data.wins_proj }} projected wins ">
                     </div>
                 </div>
-                Current win rate {{ data.currwinrate }}% <br>
-                <small>green bar - projected season wins using the current win rate.</small><br>
+                Current Record {{ data.won }}-{{ data.lost }} | Current win rate {{ data.currwinrate }}% | Projected Wins {{ data.wins_proj }}<br>
             </div>
             {% endfor %}
         </div>
@@ -30,6 +29,8 @@
     <hr>
     <section id="header">
         <h1>Player Standings</h1>
+        <small>Yellow bar is your guess | Green bar is the projection |
+            Score is the difference | Low score wins!</small>
     </section>
     <section id="players">
         <div class="container home-container">
