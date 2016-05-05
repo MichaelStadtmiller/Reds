@@ -4,6 +4,7 @@ import urllib2
 from xml.dom import minidom
 import xml.etree.ElementTree as ET
 
+
 def main():
     # create URL from mlb site
     # http://gd2.mlb.com/components/game/mlb/year_2016/month_06/day_30/epg.xml
