@@ -63,3 +63,7 @@ target/
 
 #Pycharm
 .idea/
+
+#Production
+uwsgi.ini
+db.sqlite3
