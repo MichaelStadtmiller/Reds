@@ -38,11 +38,24 @@
             <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12 staff-profile vcenter">
                 <hr>
                 <div class="row">
-                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-7 vcenter text-center">
+                    <div class="col-lg-2 col-md-3 col-sm-3 col-xs-7 vcenter text-center image-container">
                         {% with 'img/Profiles/'|add:playa.name|add:'.jpg' as profimage %}
                             <img class="img-rounded" src="{% static profimage %}">
                         {% endwith %}
                         <h3>Score : {{ playa.score }}</h3>
+                        <!--
+                        1. BOTTOM END: wins > guess plus half way to next highest
+                            a. query to get next highest number
+                            b. average guess and next highest
+                            c. wins > avg; stamp it
+                        2. TOP END: wins + games left < guess minue half way to next lowest
+                            a. query to get next lowest number
+                            b. average guess and next lowest
+                            c. (wins + left) < avg; stamp it
+                        <div class="after">
+                            <img src="{% static 'img/gone.png' %}">
+                        </div>
+                        -->
                     </div>
                     {% for data in reds_data.data %}
                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 vcenter text-center myborder">
