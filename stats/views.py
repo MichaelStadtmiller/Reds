@@ -15,26 +15,33 @@ class MainView(TemplateView):
         context = {}
         all_players = Player.objects.all()
         reds_data = RedsData.objects.all()
-        data = ([d.wins_proj() for d in reds_data])
+        # data = ([d.wins_proj() for d in reds_data])
+        for d in reds_data:
+            data = [d.wins_proj()]
         for p in all_players:
+            # calculate player's score
             p.score = abs(int(data[0])-p.guess)
-            # get next highest players guess (excluding their own)
-            high = Player.objects.filter(guess__gte=p.guess).exclude(name=p.name).order_by('guess').values('guess').first()
-            if high == None:    # if top, they are the highest
-                high = p.guess
+            ## LOWER LIMIT ##
+            # get next highest guess (excluding their own)
+            above = Player.objects.filter(guess__gt=p.guess).order_by('guess').values('guess').first()
+            if above == None:    # if top, they are the highest
+                above = p.guess
             else:
-                high = high.values()[0]
-            #TOP END: wins + games left < guess minue half way to next lowest
-            #                    a. query to get next lowest number
-            #                    b. average guess and next lowest
-            #                    c. (wins + left) < avg; stamp it
-            p.high = high
+                above = above.values()[0]
+            p.above = above #DEBUG - REMOVE
+            # use players guess and next highest to calculate a limit. Any wins > limit = GONE
+            p.lower_limit = (p.guess + above)/2
+
+            ## UPPER LIMIT ##
             # get next lowest players guess (excluding their own)
-            low = Player.objects.filter(guess__lte=p.guess).exclude(name=p.name).order_by('-guess').values('guess').first()
-            if low == None: # if bottom, they are the lowest
-                p.low = p.guess
+            below = Player.objects.filter(guess__lt=p.guess).order_by('-guess').values('guess').first()
+            if below == None: # if bottom, they are the lowest
+                below = p.guess
             else:
-                p.low = low.values()[0]
+                below = below.values()[0]
+            p.below = below #DEBUG - REMOVE
+            # user players' guess and next lowest to calculate an upper limit. Any wins < limit = GONE
+            p.upper_limit = (p.guess + below)/2
         context['players'] = all_players
         return context
 

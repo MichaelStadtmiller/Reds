@@ -44,22 +44,11 @@
                                 <img class="img-rounded" src="{% static profimage %}">
                             {% endwith %}
                             <h3>Score : {{ playa.score }}</h3>
-                            <h3>Higher: {{ playa.high }}</h3>
-                            <h3>Lower: {{ playa.low }}</h3>
-                            <!--
-                            1. BOTTOM END: wins > guess plus half way to next highest
-                                a. query to get next highest number
-                                b. average guess and next highest
-                                c. wins > avg; stamp it
-                            2. TOP END: wins + games left < guess minue half way to next lowest
-                                a. query to get next lowest number
-                                b. average guess and next lowest
-                                c. (wins + left) < avg; stamp it
-
-                            <div class="after">
-                                <img src="{% static 'img/gone.png' %}">
-                            </div>
-                            -->
+                            {% if data.won > playa.lower_limit or data.wins_pot < playa.upper_limit%}
+                                <div class="after">
+                                    <img src="{% static 'img/gone.png' %}">
+                                </div>
+                            {% endif %}
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-4 vcenter text-center myborder">
                             <br>
