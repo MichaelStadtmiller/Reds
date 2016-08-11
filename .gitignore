@@ -66,4 +66,4 @@ target/
 
 #Production
 uwsgi.ini
-db.sqlite3
+#db.sqlite3
