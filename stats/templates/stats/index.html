@@ -44,7 +44,7 @@
                                 <img class="img-rounded" src="{% static profimage %}">
                             {% endwith %}
                             <h3>Score : {{ playa.score }}</h3>
-                            {% if data.won > playa.lower_limit or data.wins_pot < playa.upper_limit%}
+                            {% if data.won > playa.lower_limit or data.wins_potential < playa.upper_limit%}
                                 <div class="after">
                                     <img src="{% static 'img/gone.png' %}">
                                 </div>

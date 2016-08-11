@@ -47,7 +47,7 @@ class RedsData(models.Model):
     def wins_proj(self):
         return int(self.total_games*(self.currwinrate()/100))
 
-    def wins_pot(self):
+    def wins_potential(self):
         return int(self.won + int(self.games_left()))
 
     def __str__(self):

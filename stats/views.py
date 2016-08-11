@@ -28,7 +28,6 @@ class MainView(TemplateView):
                 above = p.guess
             else:
                 above = above.values()[0]
-            p.above = above #DEBUG - REMOVE
             # use players guess and next highest to calculate a limit. Any wins > limit = GONE
             p.lower_limit = (p.guess + above)/2
 
@@ -39,7 +38,6 @@ class MainView(TemplateView):
                 below = p.guess
             else:
                 below = below.values()[0]
-            p.below = below #DEBUG - REMOVE
             # user players' guess and next lowest to calculate an upper limit. Any wins < limit = GONE
             p.upper_limit = (p.guess + below)/2
         context['players'] = all_players
