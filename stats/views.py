@@ -40,6 +40,10 @@ class MainView(TemplateView):
                 below = below.values()[0]
             # user players' guess and next lowest to calculate an upper limit. Any wins < limit = GONE
             p.upper_limit = (p.guess + below)/2
+            if d.won > p.lower_limit or d.wins_potential() < p.upper_limit:
+                p.out = 'T'
+            else:
+                p.out = 'F'
         context['players'] = all_players
         return context
 

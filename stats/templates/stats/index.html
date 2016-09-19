@@ -34,7 +34,7 @@
     </section>
     <section id="players">
         <div class="container home-container">
-            {% for playa in all_players.players|dictsort:"score" %}
+            {% for playa in all_players.players|dictsort:"score"|dictsort:"out" %}
             <div class="col-lg-11 col-md-12 col-sm-12 col-xs-12 staff-profile vcenter">
                 <hr>
                 <div class="row">
